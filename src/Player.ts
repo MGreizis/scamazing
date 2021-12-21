@@ -13,8 +13,8 @@ export default class Player extends GameItem {
   private keyboard: KeyListener;
 
   /**
-   * @param maxX
-   * @param maxY
+   * @param maxX maximum x value
+   * @param maxY maximum y value
    */
   public constructor(maxX:number, maxY:number) {
     super('./assets/img/character_robot_walk0.png', maxX, maxY);
@@ -29,10 +29,8 @@ export default class Player extends GameItem {
   /**
    * Moves the player depending on which arrow key is pressed. Player is bound
    * to the canvas and cannot move outside of it
-   *
-   * @param canvas
    */
-  public movePlayer() {
+  public movePlayer(): void {
     // Moving right
     if (
       this.keyboard.isKeyDown(KeyListener.KEY_RIGHT)
