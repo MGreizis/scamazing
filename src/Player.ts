@@ -64,9 +64,9 @@ export default class Player extends GameItem {
   }
 
   /**
-   * @param door
+   * @param door Door player can interact with
    */
-  public interactsWithDoor(door: Door) {
+  public interactsWithDoor(door: Door): void {
     if (this.keyboard.isKeyDown(KeyListener.KEY_SPACE)) {
       if (
         this.xPos < door.getXPos() + door.getImageWidth()
