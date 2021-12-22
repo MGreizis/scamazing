@@ -7,15 +7,17 @@ export default abstract class GameItem {
 
   protected yPos: number;
 
+  protected maxX: number;
+
+  protected maxY: number;
+
   /**
    * @param imageSrc image source
    * @param maxX maximum X value
    * @param maxY maximum Y value
    */
-  public constructor(imageSrc: string, maxX:number, maxY:number) {
+  public constructor(imageSrc: string) {
     this.img = Utils.loadNewImage(imageSrc);
-    this.xPos = Utils.randomNumber(0, maxX - this.img.width);
-    this.yPos = Utils.randomNumber(0, maxY - this.img.height);
   }
 
   /**

@@ -3,10 +3,10 @@ export default class GameItem {
     img;
     xPos;
     yPos;
-    constructor(imageSrc, maxX, maxY) {
+    maxX;
+    maxY;
+    constructor(imageSrc) {
         this.img = Utils.loadNewImage(imageSrc);
-        this.xPos = Utils.randomNumber(0, maxX - this.img.width);
-        this.yPos = Utils.randomNumber(0, maxY - this.img.height);
     }
     getImageHeight() {
         return this.img.height;

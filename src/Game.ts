@@ -1,3 +1,4 @@
+import Door from './Door.js';
 import Player from './Player.js';
 
 export default class Game {
@@ -7,7 +8,11 @@ export default class Game {
   private readonly ctx: CanvasRenderingContext2D;
 
   // Player
-  private player: Player;
+  private player: Player
+  ;
+
+  // Door
+  private door: Door;
 
   /**
    * Initialize the game
@@ -24,6 +29,8 @@ export default class Game {
 
     this.player = new Player(this.canvas.width, this.canvas.height);
 
+    this.door = new Door(this.canvas.width, this.canvas.height);
+
     // Start the game cycle
     this.loop();
   }
@@ -39,7 +46,13 @@ export default class Game {
     // Move the player
     this.player.movePlayer();
 
-    // Draw everything
+    // interaction with door
+    this.player.interactsWithDoor(this.door);
+
+    // Draw door
+    this.door.draw(this.ctx);
+
+    // Draw Player
     this.player.draw(this.ctx);
 
     // Make sure the game actually loops
