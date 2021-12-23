@@ -1,27 +1,17 @@
-import Door from './Door.js';
-import Player from './Player.js';
+import GameLoop from './GameLoop.js';
+import Level from './Level.js';
 export default class Game {
     canvas;
     ctx;
-    player;
-    door;
+    gameLoop;
     constructor(canvas) {
         this.canvas = canvas;
         this.ctx = this.canvas.getContext('2d');
         this.canvas.width = window.innerWidth;
         this.canvas.height = window.innerHeight;
-        this.player = new Player(this.canvas.width, this.canvas.height);
-        this.door = new Door(this.canvas.width, this.canvas.height);
-        this.loop();
+        this.gameLoop = new GameLoop();
+        this.gameLoop.start(new Level(this));
     }
-    loop = () => {
-        this.ctx.clearRect(0, 0, this.canvas.width, this.canvas.height);
-        this.player.movePlayer();
-        this.player.interactsWithDoor(this.door);
-        this.door.draw(this.ctx);
-        this.player.draw(this.ctx);
-        requestAnimationFrame(this.loop);
-    };
     writeTextToCanvas(text, fontSize = 20, xCoordinate, yCoordinate, alignment = 'center', color = 'white') {
         this.ctx.font = `${fontSize}px sans-serif`;
         this.ctx.fillStyle = color;

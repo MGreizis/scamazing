@@ -4,9 +4,13 @@ export default class Environment {
     keyboard;
     player;
     game;
-    constructor() {
+    canvas;
+    ctx;
+    constructor(canvas) {
         this.keyboard = new KeyListener();
         this.shouldStart = false;
+        this.canvas = canvas;
+        this.ctx = this.canvas.getContext('2d');
     }
     processInput() {
         if (this.player.interactsWithDoor) {

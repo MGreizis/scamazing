@@ -1,5 +1,5 @@
-import Door from './Door.js';
-import Player from './Player.js';
+import GameLoop from './GameLoop.js';
+import Level from './Level.js';
 
 export default class Game {
   // Necessary canvas attributes
@@ -7,11 +7,7 @@ export default class Game {
 
   public readonly ctx: CanvasRenderingContext2D;
 
-  // Player
-  private player: Player;
-
-  // Door
-  private door: Door;
+  private gameLoop: GameLoop;
 
   /**
    * Initialize the game
@@ -26,37 +22,10 @@ export default class Game {
     this.canvas.width = window.innerWidth;
     this.canvas.height = window.innerHeight;
 
-    this.player = new Player(this.canvas.width, this.canvas.height);
-
-    this.door = new Door(this.canvas.width, this.canvas.height);
-
     // Start the game cycle
-    this.loop();
+    this.gameLoop = new GameLoop();
+    this.gameLoop.start(new Level(this));
   }
-
-  /**
-   * Game cycle, basically loop that keeps the game running. It contains all
-   * the logic needed to draw the individual frames.
-   */
-  private loop = () => {
-    // Clear the screen
-    this.ctx.clearRect(0, 0, this.canvas.width, this.canvas.height);
-
-    // Move the player
-    this.player.movePlayer();
-
-    // interaction with door
-    this.player.interactsWithDoor(this.door);
-
-    // Draw door
-    this.door.draw(this.ctx);
-
-    // Draw Player
-    this.player.draw(this.ctx);
-
-    // Make sure the game actually loops
-    requestAnimationFrame(this.loop);
-  };
 
   /**
    * Writes text to the canvas
