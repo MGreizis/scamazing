@@ -3,13 +3,12 @@ import Player from './Player.js';
 
 export default class Game {
   // Necessary canvas attributes
-  private readonly canvas: HTMLCanvasElement;
+  public readonly canvas: HTMLCanvasElement;
 
-  private readonly ctx: CanvasRenderingContext2D;
+  public readonly ctx: CanvasRenderingContext2D;
 
   // Player
-  private player: Player
-  ;
+  private player: Player;
 
   // Door
   private door: Door;
@@ -69,14 +68,14 @@ export default class Game {
    * @param alignment - Where to align the text
    * @param color - The color of the text
    */
-  private writeTextToCanvas(
+  public writeTextToCanvas(
     text: string,
     fontSize: number = 20,
     xCoordinate: number,
     yCoordinate: number,
     alignment: CanvasTextAlign = 'center',
     color: string = 'white',
-  ) {
+  ): void {
     this.ctx.font = `${fontSize}px sans-serif`;
     this.ctx.fillStyle = color;
     this.ctx.textAlign = alignment;
