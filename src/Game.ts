@@ -1,11 +1,14 @@
 import GameLoop from './GameLoop.js';
-import Level from './Level.js';
+import Start from './Start.js';
+import UserData from './UserData.js';
 
 export default class Game {
   // Necessary canvas attributes
   public readonly canvas: HTMLCanvasElement;
 
   public readonly ctx: CanvasRenderingContext2D;
+
+  private user: UserData;
 
   private gameLoop: GameLoop;
 
@@ -24,7 +27,23 @@ export default class Game {
 
     // Start the game cycle
     this.gameLoop = new GameLoop();
-    this.gameLoop.start(new Level(this));
+    this.gameLoop.start(new Start(this));
+  }
+
+  /**
+   * getUser
+   *
+   * @returns the user data
+   */
+  public getUser(): UserData {
+    return this.user;
+  }
+
+  /**
+   * Resets the game to the starting state.
+   */
+  public reset(): void {
+    this.user = new UserData();
   }
 
   /**
