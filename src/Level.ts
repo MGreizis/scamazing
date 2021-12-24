@@ -11,7 +11,7 @@ export default class Level extends Scene {
   private door: Door;
 
   /**
-   * @param game
+   * @param game game
    */
   public constructor(game: Game) {
     super(game);
@@ -29,7 +29,8 @@ export default class Level extends Scene {
   }
 
   /**
-   * @param elapsed
+   * @param elapsed null
+   * @returns null
    */
   public update(elapsed: number): Scene {
     // interaction with door

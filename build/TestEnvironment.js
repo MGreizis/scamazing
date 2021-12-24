@@ -1,21 +1,24 @@
 import KeyListener from './KeyListener.js';
-export default class Environment {
+import Scene from './Scene.js';
+export default class Environment extends Scene {
     shouldStart;
     keyboard;
     player;
-    game;
-    canvas;
-    ctx;
-    constructor(canvas) {
+    constructor(game) {
+        super(game);
         this.keyboard = new KeyListener();
-        this.shouldStart = false;
-        this.canvas = canvas;
-        this.ctx = this.canvas.getContext('2d');
+        this.shouldStart = true;
     }
     processInput() {
         if (this.player.interactsWithDoor) {
             this.shouldStart = true;
         }
+    }
+    update() {
+        if (this.shouldStart === true) {
+            return new Environment(this.game);
+        }
+        return null;
     }
     render() {
         this.game.ctx.clearRect(0, 0, this.game.canvas.width, this.game.canvas.height);
