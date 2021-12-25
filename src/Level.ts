@@ -2,8 +2,11 @@ import Door from './Door.js';
 import Game from './Game.js';
 import Player from './Player.js';
 import Scene from './Scene.js';
+import Environment from './TestEnvironment.js';
 
 export default class Level extends Scene {
+  private shouldStart: boolean;
+
   // Player
   private player: Player;
 
@@ -18,12 +21,17 @@ export default class Level extends Scene {
     this.player = new Player(this.game.canvas.width, this.game.canvas.height);
 
     this.door = new Door(this.game.canvas.width, this.game.canvas.height);
+
+    this.shouldStart = false;
   }
 
   /**
    *
    */
   public processInput(): void {
+    if (this.player.interactsWithDoor(this.door)) {
+      this.shouldStart = true;
+    }
     // Move the player
     this.player.movePlayer();
   }
@@ -32,9 +40,11 @@ export default class Level extends Scene {
    * @param elapsed null
    * @returns null
    */
-  public update(elapsed: number): Scene {
+  public update(): Scene {
     // interaction with door
-    this.player.interactsWithDoor(this.door);
+    if (this.shouldStart) {
+      return new Environment(this.game);
+    }
     return null;
   }
 

@@ -1,5 +1,6 @@
 import KeyListener from './KeyListener.js';
 import Scene from './Scene.js';
+import Level from './Level.js';
 export default class Environment extends Scene {
     shouldStart;
     keyboard;
@@ -10,13 +11,13 @@ export default class Environment extends Scene {
         this.shouldStart = false;
     }
     processInput() {
-        if (this.player.interactsWithDoor) {
+        if (this.keyboard.isKeyDown(KeyListener.KEY_ESC)) {
             this.shouldStart = true;
         }
     }
     update() {
-        if (this.shouldStart === true) {
-            return new Environment(this.game);
+        if (this.shouldStart) {
+            return new Level(this.game);
         }
         return null;
     }

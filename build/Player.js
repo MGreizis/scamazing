@@ -33,14 +33,14 @@ export default class Player extends GameItem {
         }
     }
     interactsWithDoor(door) {
-        if (this.keyboard.isKeyDown(KeyListener.KEY_SPACE)) {
-            if (this.xPos < door.getXPos() + door.getImageWidth()
-                && this.xPos + this.img.width > door.getXPos()
-                && this.yPos < door.getYPos() + door.getImageHeight()
-                && this.yPos + this.img.height > door.getYPos()) {
-                console.log('interacted with door');
-            }
+        if (this.keyboard.isKeyDown(KeyListener.KEY_SPACE)
+            && this.xPos < door.getXPos() + door.getImageWidth()
+            && this.xPos + this.img.width > door.getXPos()
+            && this.yPos < door.getYPos() + door.getImageHeight()
+            && this.yPos + this.img.height > door.getYPos()) {
+            return true;
         }
+        return false;
     }
 }
 //# sourceMappingURL=Player.js.map

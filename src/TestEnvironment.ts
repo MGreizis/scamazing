@@ -2,6 +2,7 @@ import Game from './Game.js';
 import KeyListener from './KeyListener.js';
 import Scene from './Scene.js';
 import Player from './Player.js';
+import Level from './Level.js';
 
 export default class Environment extends Scene {
   private shouldStart: boolean;
@@ -26,7 +27,7 @@ export default class Environment extends Scene {
    * Lorem ipsum
    */
   public processInput(): void {
-    if (this.player.interactsWithDoor) {
+    if (this.keyboard.isKeyDown(KeyListener.KEY_SPACE)) {
       this.shouldStart = true;
     }
   }
@@ -43,8 +44,8 @@ export default class Environment extends Scene {
    * @returns null
    */
   public update(): Scene {
-    if (this.shouldStart === true) {
-      return new Environment(this.game);
+    if (this.shouldStart) {
+      return new Level(this.game);
     }
     return null;
   }

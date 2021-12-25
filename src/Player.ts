@@ -66,16 +66,16 @@ export default class Player extends GameItem {
   /**
    * @param door Door player can interact with
    */
-  public interactsWithDoor(door: Door): void {
-    if (this.keyboard.isKeyDown(KeyListener.KEY_SPACE)) {
-      if (
-        this.xPos < door.getXPos() + door.getImageWidth()
+  public interactsWithDoor(door: Door): boolean {
+    if (
+      this.keyboard.isKeyDown(KeyListener.KEY_SPACE)
+        && this.xPos < door.getXPos() + door.getImageWidth()
         && this.xPos + this.img.width > door.getXPos()
         && this.yPos < door.getYPos() + door.getImageHeight()
         && this.yPos + this.img.height > door.getYPos()
-      ) {
-        console.log('interacted with door');
-      }
+    ) {
+      return true;
     }
+    return false;
   }
 }
