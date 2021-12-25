@@ -7,7 +7,7 @@ export default class Environment extends Scene {
     constructor(game) {
         super(game);
         this.keyboard = new KeyListener();
-        this.shouldStart = true;
+        this.shouldStart = false;
     }
     processInput() {
         if (this.player.interactsWithDoor) {
