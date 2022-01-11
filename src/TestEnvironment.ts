@@ -32,12 +32,6 @@ export default class Environment extends Scene {
     }
   }
 
-  // public goBack(): void {
-  //   if (this.keybaord.isKeyDown(KeyListener.KEY_SPACE)) {
-  //     const init = () => new Game(document.getElementById('canvas') as HTMLCanvasElement);
-  //   }
-  // }
-
   /**
    * Idk
    *
@@ -59,7 +53,7 @@ export default class Environment extends Scene {
     // Show temporary environment (random text for now)
     const centerX = this.game.canvas.width / 2;
     const line1 = 'This area is still being worked on :)';
-    this.game.writeTextToCanvas(line1, 128, centerX, 250, 'center', 'red');
+    this.game.writeTextToCanvas(line1, 80, centerX, 250, 'center', 'red');
     const msg = "Press 'spacebar' to go back";
     this.game.writeTextToCanvas(msg, 48, centerX, 450, 'center', 'red');
   }
