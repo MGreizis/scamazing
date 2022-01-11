@@ -11,7 +11,7 @@ export default class Environment extends Scene {
         this.shouldStart = false;
     }
     processInput() {
-        if (this.keyboard.isKeyDown(KeyListener.KEY_ESC)) {
+        if (this.keyboard.isKeyDown(KeyListener.KEY_SPACE)) {
             this.shouldStart = true;
         }
     }
