@@ -1,15 +1,21 @@
 import Game from './Game.js';
 import KeyListener from './KeyListener.js';
 import Scene from './Scene.js';
-import Player from './Player.js';
 import Level from './Level.js';
+import Cookie from './Cookie.js';
 
-export default class Environment extends Scene {
+export default class ClickerGame extends Scene {
   private shouldStart: boolean;
 
   private keyboard: KeyListener;
 
-  private player: Player;
+  private cookie: Cookie;
+
+  private clickX: number;
+
+  private clickY: number;
+
+  private clicks: number;
 
   /**
    * Constructor
@@ -21,6 +27,24 @@ export default class Environment extends Scene {
     // game.reset();
     this.keyboard = new KeyListener();
     this.shouldStart = false;
+
+    this.cookie = new Cookie(this.game.canvas.width, this.game.canvas.height);
+
+    this.clicks = 0;
+
+    this.game.canvas.addEventListener('click', (mouseEvent: MouseEvent): void => {
+      this.clickX = mouseEvent.pageX;
+      this.clickY = mouseEvent.pageY;
+
+      if (
+        this.clickX < (this.cookie.getXPos() + this.cookie.getImageWidth())
+        && this.clickX > this.cookie.getXPos()
+        && this.clickY < (this.cookie.getYPos() + this.cookie.getImageHeight())
+        && this.clickY > this.cookie.getYPos()) {
+        this.clicks += 1;
+        console.log(this.clicks);
+      }
+    });
   }
 
   /**
@@ -31,12 +55,6 @@ export default class Environment extends Scene {
       this.shouldStart = true;
     }
   }
-
-  // public goBack(): void {
-  //   if (this.keybaord.isKeyDown(KeyListener.KEY_SPACE)) {
-  //     const init = () => new Game(document.getElementById('canvas') as HTMLCanvasElement);
-  //   }
-  // }
 
   /**
    * Idk
@@ -56,11 +74,11 @@ export default class Environment extends Scene {
   public render(): void {
     // Clear the screen
     this.game.ctx.clearRect(0, 0, this.game.canvas.width, this.game.canvas.height);
-    // Show temporary environment (random text for now)
+
     const centerX = this.game.canvas.width / 2;
-    const line1 = 'This area is still being worked on :)';
-    this.game.writeTextToCanvas(line1, 128, centerX, 250, 'center', 'red');
-    const msg = "Press 'spacebar' to go back";
-    this.game.writeTextToCanvas(msg, 48, centerX, 450, 'center', 'red');
+    this.game.writeTextToCanvas(`Clicks: ${this.clicks}`, 50, centerX, 50, 'center', 'black');
+
+    // Draw cookie
+    this.cookie.draw(this.game.ctx);
   }
 }

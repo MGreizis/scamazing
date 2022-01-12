@@ -1,7 +1,7 @@
 import Door from './Door.js';
 import Player from './Player.js';
 import Scene from './Scene.js';
-import Environment from './TestEnvironment.js';
+import ClickerGame from './ClickerGame.js';
 export default class Level extends Scene {
     shouldStart;
     player;
@@ -20,7 +20,7 @@ export default class Level extends Scene {
     }
     update() {
         if (this.shouldStart) {
-            return new Environment(this.game);
+            return new ClickerGame(this.game);
         }
         return null;
     }
