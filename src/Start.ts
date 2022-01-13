@@ -61,7 +61,7 @@ export default class Start extends Scene {
     this.game.writeTextToCanvas('Scamazing', 128, centerX, 250, 'center', 'black');
     this.game.writeTextToCanvas(`Ready ${this.game.getUser().getName()}`, 48, centerX,
       450, 'center', 'black');
-    this.game.writeTextToCanvas('press s to start', 48, centerX,
+    this.game.writeTextToCanvas("Press 'S' to start", 48, centerX,
       550, 'center', 'black');
   }
 }

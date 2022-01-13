@@ -51,7 +51,6 @@ export default class Level extends Scene {
   }
 
   /**
-   * @param elapsed null
    * @returns null
    */
   public update(): Scene {

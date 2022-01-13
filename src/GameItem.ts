@@ -13,8 +13,6 @@ export default abstract class GameItem {
 
   /**
    * @param imageSrc image source
-   * @param maxX maximum X value
-   * @param maxY maximum Y value
    */
   public constructor(imageSrc: string) {
     this.img = Utils.loadNewImage(imageSrc);

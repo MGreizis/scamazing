@@ -65,6 +65,7 @@ export default class Player extends GameItem {
 
   /**
    * @param door Door player can interact with
+   * @returns false
    */
   public interactsWithDoor(door: Door): boolean {
     if (

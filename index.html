@@ -10,9 +10,13 @@
 <body>
     <canvas id="canvas"></canvas>
     <script src="build/app.js" type="module"></script>
-    <audio autoplay="autoplay">
+    <audio autoplay="autoplay" id="background-music">
         <source src="assets/background.mp3" type="audio/mpeg" />
     </audio>
+    <script>
+        let audio = document.getElementById('background-music');
+        audio.volume = 0.05;
+    </script>
 </body>
 
 </html>
