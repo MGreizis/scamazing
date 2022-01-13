@@ -41,7 +41,7 @@ export default class Level extends Scene {
         this.cookieDoor.draw(this.game.ctx);
         this.testDoor.draw(this.game.ctx);
         this.player.draw(this.game.ctx);
-        this.game.writeTextToCanvas("To enter a door, move your character over it and press 'spacebar'", 30, this.game.canvas.width, this.game.canvas.height - 1, 'right', 'black');
+        this.game.writeTextToCanvas("To enter a door, move your character over it and press 'spacebar'", 30, this.game.canvas.width - 5, this.game.canvas.height - 10, 'right', 'black');
     }
 }
 //# sourceMappingURL=Level.js.map
