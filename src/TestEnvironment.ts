@@ -49,7 +49,7 @@ export default class TestEnvironment extends Scene {
     // Show temporary environment (random text for now)
     const centerX = this.game.canvas.width / 2;
     const line1 = 'This area is still being worked on :)';
-    this.game.writeTextToCanvas(line1, 128, centerX, 250, 'center', 'red');
+    this.game.writeTextToCanvas(line1, 76, centerX, 250, 'center', 'red');
     const msg = "Press 'spacebar' to go back";
     this.game.writeTextToCanvas(msg, 48, centerX, 450, 'center', 'red');
   }
