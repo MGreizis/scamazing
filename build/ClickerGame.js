@@ -23,12 +23,11 @@ export default class ClickerGame extends Scene {
                 && this.clickY < (this.cookie.getYPos() + this.cookie.getImageHeight())
                 && this.clickY > this.cookie.getYPos()) {
                 this.clicks += 1;
-                console.log(this.clicks);
             }
         });
     }
     processInput() {
-        if (this.keyboard.isKeyDown(KeyListener.KEY_SPACE)) {
+        if (this.clicks === 20) {
             this.shouldStart = true;
         }
     }

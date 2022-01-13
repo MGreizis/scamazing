@@ -1,4 +1,4 @@
-import Door from './Door.js';
+import Door from './Doors.js';
 import GameItem from './GameItem.js';
 import KeyListener from './KeyListener.js';
 

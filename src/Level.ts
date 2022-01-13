@@ -1,17 +1,23 @@
-import Door from './Door.js';
+import CookieDoor from './CookieDoor.js';
 import Game from './Game.js';
 import Player from './Player.js';
 import Scene from './Scene.js';
 import ClickerGame from './ClickerGame.js';
+import TestDoor from './TestDoor.js';
+import TestEnvironment from './TestEnvironment.js';
 
 export default class Level extends Scene {
-  private shouldStart: boolean;
+  private shouldStartClickerGame: boolean;
+
+  private shouldStartTestGame: boolean;
 
   // Player
   private player: Player;
 
   // Door
-  private door: Door;
+  private cookieDoor: CookieDoor;
+
+  private testDoor: TestDoor;
 
   /**
    * @param game game
@@ -20,17 +26,25 @@ export default class Level extends Scene {
     super(game);
     this.player = new Player(this.game.canvas.width, this.game.canvas.height);
 
-    this.door = new Door(this.game.canvas.width, this.game.canvas.height);
+    this.cookieDoor = new CookieDoor(this.game.canvas.width, this.game.canvas.height);
 
-    this.shouldStart = false;
+    this.testDoor = new TestDoor(this.game.canvas.width, this.game.canvas.height);
+
+    this.shouldStartClickerGame = false;
+
+    this.shouldStartTestGame = false;
   }
 
   /**
    *
    */
   public processInput(): void {
-    if (this.player.interactsWithDoor(this.door)) {
-      this.shouldStart = true;
+    if (this.player.interactsWithDoor(this.cookieDoor)) {
+      this.shouldStartClickerGame = true;
+    }
+
+    if (this.player.interactsWithDoor(this.testDoor)) {
+      this.shouldStartTestGame = true;
     }
     // Move the player
     this.player.movePlayer();
@@ -42,8 +56,11 @@ export default class Level extends Scene {
    */
   public update(): Scene {
     // interaction with door
-    if (this.shouldStart) {
+    if (this.shouldStartClickerGame) {
       return new ClickerGame(this.game);
+    }
+    if (this.shouldStartTestGame) {
+      return new TestEnvironment(this.game);
     }
     return null;
   }
@@ -56,7 +73,9 @@ export default class Level extends Scene {
     this.game.ctx.clearRect(0, 0, this.game.canvas.width, this.game.canvas.height);
 
     // Draw door
-    this.door.draw(this.game.ctx);
+    this.cookieDoor.draw(this.game.ctx);
+
+    this.testDoor.draw(this.game.ctx);
 
     // Draw Player
     this.player.draw(this.game.ctx);
