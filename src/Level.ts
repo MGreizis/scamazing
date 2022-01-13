@@ -78,5 +78,7 @@ export default class Level extends Scene {
 
     // Draw Player
     this.player.draw(this.game.ctx);
+
+    this.game.writeTextToCanvas("To enter a door, move your character over it and press 'spacebar'", 30, this.game.canvas.width, this.game.canvas.height, 'right', 'black');
   }
 }
