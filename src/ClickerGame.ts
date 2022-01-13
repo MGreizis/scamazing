@@ -24,7 +24,6 @@ export default class ClickerGame extends Scene {
    */
   public constructor(game: Game) {
     super(game);
-    // game.reset();
     this.keyboard = new KeyListener();
     this.shouldStart = false;
 

@@ -3,6 +3,7 @@ import Game from './Game.js';
 import Player from './Player.js';
 import Scene from './Scene.js';
 import ClickerGame from './ClickerGame.js';
+import Environment from './TestEnvironment.js';
 
 export default class Level extends Scene {
   private shouldStart: boolean;
@@ -37,7 +38,6 @@ export default class Level extends Scene {
   }
 
   /**
-   * @param elapsed null
    * @returns null
    */
   public update(): Scene {
