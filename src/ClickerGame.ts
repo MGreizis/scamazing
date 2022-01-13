@@ -51,7 +51,7 @@ export default class ClickerGame extends Scene {
    * Lorem ipsum
    */
   public processInput(): void {
-    if (this.keyboard.isKeyDown(KeyListener.KEY_SPACE)) {
+    if (this.clicks === 20) {
       this.shouldStart = true;
     }
   }

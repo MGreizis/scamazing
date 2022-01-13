@@ -28,7 +28,7 @@ export default class ClickerGame extends Scene {
         });
     }
     processInput() {
-        if (this.keyboard.isKeyDown(KeyListener.KEY_SPACE)) {
+        if (this.clicks === 20) {
             this.shouldStart = true;
         }
     }
