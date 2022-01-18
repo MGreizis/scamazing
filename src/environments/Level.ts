@@ -1,10 +1,12 @@
-import CookieDoor from '../objects/CookieDoor.js';
 import Game from '../scripts/Game.js';
 import Player from '../objects/Player.js';
 import Scene from './Scene.js';
 import ClickerGame from './ClickerGame.js';
+import CookieDoor from '../objects/CookieDoor.js';
 import TestDoor from '../objects/TestDoor.js';
 import TestEnvironment from './TestEnvironment.js';
+import SnakeGame from './SnakeGame.js';
+import SnakeDoor from '../objects/SnakeDoor.js';
 
 export default class Level extends Scene {
   private shouldStartClickerGame: boolean;
@@ -21,6 +23,10 @@ export default class Level extends Scene {
 
   private isClickerCompleted: boolean;
 
+  private shouldStartSnake: boolean;
+
+  private snakeDoor: SnakeDoor;
+
   /**
    * @param game game
    */
@@ -32,11 +38,15 @@ export default class Level extends Scene {
 
     this.testDoor = new TestDoor(this.game.canvas.width, this.game.canvas.height);
 
+    this.snakeDoor = new SnakeDoor(this.game.canvas.width, this.game.canvas.width);
+
     this.shouldStartClickerGame = false;
 
     this.shouldStartTestGame = false;
 
     this.isClickerCompleted = false;
+
+    this.shouldStartSnake = false;
   }
 
   /**
@@ -50,6 +60,11 @@ export default class Level extends Scene {
     if (this.player.interactsWithDoor(this.testDoor)) {
       this.shouldStartTestGame = true;
     }
+
+    if (this.player.interactsWithDoor(this.snakeDoor)) {
+      this.shouldStartSnake = true;
+    }
+
     // Move the player
     this.player.movePlayer();
   }
@@ -65,6 +80,9 @@ export default class Level extends Scene {
     if (this.shouldStartTestGame) {
       return new TestEnvironment(this.game);
     }
+    if (this.shouldStartSnake) {
+      return new SnakeGame(this.game);
+    }
     return null;
   }
 
@@ -77,18 +95,20 @@ export default class Level extends Scene {
 
     // Show score
     const score = `Score: ${this.game.getUser().getScore()}`;
-    this.game.writeTextToCanvas(score, 36, 120, 50);
+    this.game.writeTextToCanvas(score, 30, 10, this.game.canvas.height - 10, 'left', 'white');
 
     // Draw door
     this.cookieDoor.draw(this.game.ctx);
 
     this.testDoor.draw(this.game.ctx);
 
+    if (this.game.getUser().getScore() >= 100) {
+      this.snakeDoor.draw(this.game.ctx);
+    }
+
     // Draw Player
     this.player.draw(this.game.ctx);
 
     this.game.writeTextToCanvas("To enter a door, move your character over it and press 'spacebar'", 30, this.game.canvas.width - 5, this.game.canvas.height - 10, 'right', 'white');
-
-    // this.game.writeTextToCanvas(`Score: ${this.game.getUser().getScore()}`, 30, 10, this.game.canvas.height - 10, 'left', 'white');
   }
 }
