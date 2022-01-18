@@ -1,1 +1,0 @@
-{"version":3,"file":"CookieDoor.js","sourceRoot":"","sources":["../src/CookieDoor.ts"],"names":[],"mappings":"AAAA,OAAO,KAAK,MAAM,YAAY,CAAC;AAE/B,MAAM,CAAC,OAAO,OAAO,UAAW,SAAQ,KAAK;IAK3C,YAAmB,IAAW,EAAE,IAAW;QACzC,KAAK,CAAC,IAAI,EAAE,IAAI,EAAE,8BAA8B,CAAC,CAAC;IACpD,CAAC;CACF"}
