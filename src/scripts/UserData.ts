@@ -3,12 +3,15 @@ export default class UserData {
 
   private level: number;
 
+  private score: number;
+
   /**
    * Creates a new instance of this class
    */
   public constructor() {
     this.level = 1;
     this.name = 'Player 1';
+    this.score = 0;
   }
 
   /**
@@ -43,5 +46,28 @@ export default class UserData {
    */
   public increaseLevel(): void {
     this.level += 1;
+  }
+
+  /**
+   * Score getter
+   *
+   * @returns score
+   */
+  public getScore(): number {
+    return this.score;
+  }
+
+  /**
+   * Adds points to score
+   */
+  public addScore(): void {
+    this.score += 50;
+  }
+
+  /**
+   * Removes points from the score
+   */
+  public removeScore(): void {
+    this.score -= 30;
   }
 }

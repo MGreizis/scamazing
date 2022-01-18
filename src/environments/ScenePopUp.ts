@@ -52,9 +52,11 @@ export default class ScenePopUp extends Scene {
    */
   public update(): Scene {
     if (this.shouldStartInteractedWithPop) {
+      this.game.getUser().removeScore();
       return new InteractedWithPopUp(this.game);
     }
     if (this.shouldStartHub) {
+      this.game.getUser().addScore();
       return new Level(this.game);
     }
     return null;
