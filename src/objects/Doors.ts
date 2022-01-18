@@ -9,8 +9,10 @@ export default abstract class Doors extends GameItem {
    */
   public constructor(maxX:number, maxY:number, img: string) {
     super(img);
-    this.xPos = Utils.randomNumber(0 + this.img.width, maxX - (this.img.width));
-    this.yPos = Utils.randomNumber(0 + this.img.height, maxY - (this.img.height));
+    // this.xPos = Utils.randomNumber(0 + this.img.width, maxX - (this.img.width));
+    // this.yPos = Utils.randomNumber(0 + this.img.height, maxY - (this.img.height));
+    this.xPos = Utils.randomNumber(0, maxX - (this.img.width));
+    this.yPos = Utils.randomNumber(0, maxY - (this.img.height));
 
     this.maxX = maxX;
     this.maxY = maxY;

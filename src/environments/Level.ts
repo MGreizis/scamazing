@@ -75,6 +75,10 @@ export default class Level extends Scene {
     // Clear the screen
     this.game.ctx.clearRect(0, 0, this.game.canvas.width, this.game.canvas.height);
 
+    // Show score
+    const score = `Score: ${this.game.getUser().getScore()}`;
+    this.game.writeTextToCanvas(score, 36, 120, 50);
+
     // Draw door
     this.cookieDoor.draw(this.game.ctx);
 
@@ -85,6 +89,6 @@ export default class Level extends Scene {
 
     this.game.writeTextToCanvas("To enter a door, move your character over it and press 'spacebar'", 30, this.game.canvas.width - 5, this.game.canvas.height - 10, 'right', 'white');
 
-    this.game.writeTextToCanvas(`Score: ${this.game.getUser().getScore()}`, 30, 10, this.game.canvas.height - 10, 'left', 'white');
+    // this.game.writeTextToCanvas(`Score: ${this.game.getUser().getScore()}`, 30, 10, this.game.canvas.height - 10, 'left', 'white');
   }
 }
