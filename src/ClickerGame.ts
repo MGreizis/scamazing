@@ -1,8 +1,9 @@
 import Game from './Game.js';
 import KeyListener from './KeyListener.js';
 import Scene from './Scene.js';
-import Level from './Level.js';
 import Cookie from './Cookie.js';
+import PopUp from './ClickerPopUp.js';
+import ScenePopUp from './ScenePopUp.js';
 
 export default class ClickerGame extends Scene {
   private shouldStart: boolean;
@@ -15,7 +16,9 @@ export default class ClickerGame extends Scene {
 
   private clickY: number;
 
-  private clicks: number;
+  public clicks: number;
+
+  private popUp: PopUp;
 
   /**
    * Constructor
@@ -24,11 +27,12 @@ export default class ClickerGame extends Scene {
    */
   public constructor(game: Game) {
     super(game);
-    // game.reset();
     this.keyboard = new KeyListener();
     this.shouldStart = false;
 
     this.cookie = new Cookie(this.game.canvas.width, this.game.canvas.height);
+
+    this.popUp = new PopUp(this.game.canvas.width, this.game.canvas.height);
 
     this.clicks = 0;
 
@@ -62,7 +66,7 @@ export default class ClickerGame extends Scene {
    */
   public update(): Scene {
     if (this.shouldStart) {
-      return new Level(this.game);
+      return new ScenePopUp(this.game);
     }
     return null;
   }
@@ -75,7 +79,7 @@ export default class ClickerGame extends Scene {
     this.game.ctx.clearRect(0, 0, this.game.canvas.width, this.game.canvas.height);
 
     const centerX = this.game.canvas.width / 2;
-    this.game.writeTextToCanvas(`Clicks: ${this.clicks}`, 50, centerX, 50, 'center', 'black');
+    this.game.writeTextToCanvas(`Clicks: ${this.clicks}`, 50, centerX, 50, 'center', 'white');
 
     // Draw cookie
     this.cookie.draw(this.game.ctx);

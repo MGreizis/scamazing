@@ -5,7 +5,7 @@ export default abstract class Doors extends GameItem {
   /**
    * @param maxX maximum x value
    * @param maxY maximum y value
-   * @param img
+   * @param img image
    */
   public constructor(maxX:number, maxY:number, img: string) {
     super(img);

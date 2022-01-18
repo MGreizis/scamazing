@@ -1,17 +1,20 @@
 import KeyListener from './KeyListener.js';
-import Level from './Level.js';
 import Scene from './Scene.js';
-export default class Start extends Scene {
+import Level from './Level.js';
+import PopUp from './ClickerPopUp.js';
+export default class ScenePopUp extends Scene {
     shouldStart;
     keyboard;
+    popUp;
+    clickerGame;
     constructor(game) {
         super(game);
-        game.reset();
         this.keyboard = new KeyListener();
         this.shouldStart = false;
+        this.popUp = new PopUp(this.game.canvas.width, this.game.canvas.height);
     }
     processInput() {
-        if (this.keyboard.isKeyDown(KeyListener.KEY_S)) {
+        if (this.keyboard.isKeyDown(KeyListener.KEY_C)) {
             this.shouldStart = true;
         }
     }
@@ -23,10 +26,7 @@ export default class Start extends Scene {
     }
     render() {
         this.game.ctx.clearRect(0, 0, this.game.canvas.width, this.game.canvas.height);
-        const centerX = this.game.canvas.width / 2;
-        this.game.writeTextToCanvas('Scamazing', 128, centerX, 250, 'center', 'white');
-        this.game.writeTextToCanvas(`Ready ${this.game.getUser().getName()}`, 48, centerX, 450, 'center', 'white');
-        this.game.writeTextToCanvas("Press 'S' to start", 48, centerX, 550, 'center', 'white');
+        this.popUp.draw(this.game.ctx);
     }
 }
-//# sourceMappingURL=Start.js.map
+//# sourceMappingURL=ScenePopUp.js.map

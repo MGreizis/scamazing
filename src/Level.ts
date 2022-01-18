@@ -19,6 +19,8 @@ export default class Level extends Scene {
 
   private testDoor: TestDoor;
 
+  private isClickerCompleted: boolean;
+
   /**
    * @param game game
    */
@@ -26,13 +28,15 @@ export default class Level extends Scene {
     super(game);
     this.player = new Player(this.game.canvas.width, this.game.canvas.height);
 
-    this.cookieDoor = new CookieDoor(this.game.canvas.width, this.game.canvas.height);
+    this.cookieDoor = new CookieDoor(this.game.canvas.width - 50, this.game.canvas.height - 50);
 
     this.testDoor = new TestDoor(this.game.canvas.width, this.game.canvas.height);
 
     this.shouldStartClickerGame = false;
 
     this.shouldStartTestGame = false;
+
+    this.isClickerCompleted = false;
   }
 
   /**
@@ -79,6 +83,6 @@ export default class Level extends Scene {
     // Draw Player
     this.player.draw(this.game.ctx);
 
-    this.game.writeTextToCanvas("To enter a door, move your character over it and press 'spacebar'", 30, this.game.canvas.width - 5, this.game.canvas.height - 10, 'right', 'black');
+    this.game.writeTextToCanvas("To enter a door, move your character over it and press 'spacebar'", 30, this.game.canvas.width - 5, this.game.canvas.height - 10, 'right', 'white');
   }
 }
