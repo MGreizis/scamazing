@@ -1,7 +1,7 @@
 import Utils from '../scripts/Utils.js';
 import Doors from './Doors.js';
 
-export default class TestDoor extends Doors {
+export default class DiscordDoor extends Doors {
   /**
    * @param maxX maximum x value
    * @param maxY maximum y value

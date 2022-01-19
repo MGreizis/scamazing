@@ -3,15 +3,15 @@ import Player from '../objects/Player.js';
 import Scene from './Scene.js';
 import ClickerGame from './ClickerGame.js';
 import CookieDoor from '../objects/CookieDoor.js';
-import TestDoor from '../objects/TestDoor.js';
-import TestEnvironment from './TestEnvironment.js';
+import DiscordDoor from '../objects/DiscordDoor.js';
 import SnakeGame from './SnakeGame.js';
 import SnakeDoor from '../objects/SnakeDoor.js';
+import MessagingGame from './MessagingGame.js';
 
 export default class Level extends Scene {
   private shouldStartClickerGame: boolean;
 
-  private shouldStartTestGame: boolean;
+  private shouldStartDiscord: boolean;
 
   // Player
   private player: Player;
@@ -19,7 +19,7 @@ export default class Level extends Scene {
   // Door
   private cookieDoor: CookieDoor;
 
-  private testDoor: TestDoor;
+  private discordDoor: DiscordDoor;
 
   private isClickerCompleted: boolean;
 
@@ -36,13 +36,13 @@ export default class Level extends Scene {
 
     this.cookieDoor = new CookieDoor(this.game.canvas.width - 50, this.game.canvas.height - 50);
 
-    this.testDoor = new TestDoor(this.game.canvas.width, this.game.canvas.height);
+    this.discordDoor = new DiscordDoor(this.game.canvas.width, this.game.canvas.height);
 
     this.snakeDoor = new SnakeDoor(this.game.canvas.width, this.game.canvas.width);
 
     this.shouldStartClickerGame = false;
 
-    this.shouldStartTestGame = false;
+    this.shouldStartDiscord = false;
 
     this.isClickerCompleted = false;
 
@@ -57,8 +57,8 @@ export default class Level extends Scene {
       this.shouldStartClickerGame = true;
     }
 
-    if (this.player.interactsWithDoor(this.testDoor)) {
-      this.shouldStartTestGame = true;
+    if (this.player.interactsWithDoor(this.discordDoor)) {
+      this.shouldStartDiscord = true;
     }
 
     if (this.player.interactsWithDoor(this.snakeDoor)) {
@@ -77,8 +77,8 @@ export default class Level extends Scene {
     if (this.shouldStartClickerGame) {
       return new ClickerGame(this.game);
     }
-    if (this.shouldStartTestGame) {
-      return new TestEnvironment(this.game);
+    if (this.shouldStartDiscord) {
+      return new MessagingGame(this.game);
     }
     if (this.shouldStartSnake) {
       return new SnakeGame(this.game);
@@ -100,7 +100,7 @@ export default class Level extends Scene {
     // Draw door
     this.cookieDoor.draw(this.game.ctx);
 
-    this.testDoor.draw(this.game.ctx);
+    this.discordDoor.draw(this.game.ctx);
 
     if (this.game.getUser().getScore() >= 100) {
       this.snakeDoor.draw(this.game.ctx);

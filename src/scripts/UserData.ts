@@ -59,15 +59,19 @@ export default class UserData {
 
   /**
    * Adds points to score
+   *
+   * @param points number of points added
    */
-  public addScore(): void {
-    this.score += 50;
+  public addScore(points: number): void {
+    this.score += points;
   }
 
   /**
    * Removes points from the score
+   *
+   * @param points number of points removed
    */
-  public removeScore(): void {
-    this.score -= 30;
+  public removeScore(points: number): void {
+    this.score -= points;
   }
 }

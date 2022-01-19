@@ -1,32 +1,32 @@
 import KeyListener from '../scripts/KeyListener.js';
+import Level from './Level.js';
 import Scene from './Scene.js';
-import EndScreen from './EndScreen.js';
-export default class SnakeGame extends Scene {
+export default class EndScreen extends Scene {
     shouldStart;
     keyboard;
     constructor(game) {
         super(game);
+        game.reset();
         this.keyboard = new KeyListener();
         this.shouldStart = false;
     }
     processInput() {
-        if (this.keyboard.isKeyDown(KeyListener.KEY_SPACE)) {
+        if (this.keyboard.isKeyDown(KeyListener.KEY_S)) {
             this.shouldStart = true;
         }
     }
     update() {
         if (this.shouldStart) {
-            return new EndScreen(this.game);
+            return new Level(this.game);
         }
         return null;
     }
     render() {
         this.game.ctx.clearRect(0, 0, this.game.canvas.width, this.game.canvas.height);
         const centerX = this.game.canvas.width / 2;
-        const line1 = 'This area is still being worked on :)';
-        this.game.writeTextToCanvas(line1, 76, centerX, 250, 'center', 'red');
-        const msg = "Press 'spacebar' to go back";
-        this.game.writeTextToCanvas(msg, 48, centerX, 450, 'center', 'red');
+        this.game.writeTextToCanvas('Congratulations! You are now', 80, centerX, 100, 'center', 'white');
+        this.game.writeTextToCanvas('able to identify simple scams and', 80, centerX, 200, 'center', 'white');
+        this.game.writeTextToCanvas('not fall for them!', 80, centerX, 300, 'center', 'white');
     }
 }
-//# sourceMappingURL=SnakeGame.js.map
+//# sourceMappingURL=EndScreen.js.map
