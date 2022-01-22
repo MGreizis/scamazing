@@ -1,4 +1,4 @@
-import Door from './Doors.js';
+import Doors from './Doors.js';
 import GameItem from './GameItem.js';
 import KeyListener from '../scripts/KeyListener.js';
 
@@ -16,7 +16,7 @@ export default class Player extends GameItem {
   public constructor(maxX:number, maxY:number) {
     super('./assets/img/character_robot_walk0.png');
     this.xPos = 0;
-    this.yPos = 0;
+    this.yPos = 400;
     this.xVel = 10;
     this.yVel = 10;
     this.maxX = maxX;
@@ -67,7 +67,7 @@ export default class Player extends GameItem {
    * @param door Door player can interact with
    * @returns false
    */
-  public interactsWithDoor(door: Door): boolean {
+  public interactsWithDoor(door: Doors): boolean {
     if (
       this.keyboard.isKeyDown(KeyListener.KEY_SPACE)
         && this.xPos < door.getXPos() + door.getImageWidth()

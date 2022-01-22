@@ -7,6 +7,8 @@ import TestDoor from '../objects/TestDoor.js';
 import TestEnvironment from './TestEnvironment.js';
 import SnakeGame from './SnakeGame.js';
 import SnakeDoor from '../objects/SnakeDoor.js';
+import Snake from '../objects/Snake.js';
+import Food from '../objects/Food.js';
 
 export default class Level extends Scene {
   private shouldStartClickerGame: boolean;
@@ -14,7 +16,7 @@ export default class Level extends Scene {
   private shouldStartTestGame: boolean;
 
   // Player
-  private player: Player;
+  // private player: Player;
 
   // Door
   private cookieDoor: CookieDoor;
@@ -27,12 +29,16 @@ export default class Level extends Scene {
 
   private snakeDoor: SnakeDoor;
 
+  private snake : Snake;
+
+  private food: Food;
+
   /**
    * @param game game
    */
   public constructor(game: Game) {
     super(game);
-    this.player = new Player(this.game.canvas.width, this.game.canvas.height);
+    // this.player = new Player(this.game.canvas.width, this.game.canvas.height);
 
     this.cookieDoor = new CookieDoor(this.game.canvas.width - 50, this.game.canvas.height - 50);
 
@@ -47,26 +53,31 @@ export default class Level extends Scene {
     this.isClickerCompleted = false;
 
     this.shouldStartSnake = false;
+
+    this.snake = new Snake();
+
+    this.food = new Food(this.game.canvas.width, this.game.canvas.height);
   }
 
   /**
    *
    */
   public processInput(): void {
-    if (this.player.interactsWithDoor(this.cookieDoor)) {
+    if (this.snake.interactsWithDoor(this.cookieDoor)) {
       this.shouldStartClickerGame = true;
     }
 
-    if (this.player.interactsWithDoor(this.testDoor)) {
+    if (this.snake.interactsWithDoor(this.testDoor)) {
       this.shouldStartTestGame = true;
     }
 
-    if (this.player.interactsWithDoor(this.snakeDoor)) {
+    if (this.snake.interactsWithDoor(this.snakeDoor)) {
       this.shouldStartSnake = true;
     }
 
     // Move the player
-    this.player.movePlayer();
+    // this.player.movePlayer();
+    this.snake.controlSnake();
   }
 
   /**
@@ -83,6 +94,10 @@ export default class Level extends Scene {
     if (this.shouldStartSnake) {
       return new SnakeGame(this.game);
     }
+    this.snake.collison(this.game.canvas.width, this.game.canvas.height);
+    setTimeout(() => {
+      this.snake.moveSnake(this.food, this.game.canvas.width, this.game.canvas.height);
+    }, 100);
     return null;
   }
 
@@ -90,6 +105,7 @@ export default class Level extends Scene {
    *
    */
   public render(): void {
+    this.snake.collison(this.game.canvas.width, this.game.canvas.height);
     // Clear the screen
     this.game.ctx.clearRect(0, 0, this.game.canvas.width, this.game.canvas.height);
 
@@ -107,8 +123,13 @@ export default class Level extends Scene {
     }
 
     // Draw Player
-    this.player.draw(this.game.ctx);
+    // this.player.draw(this.game.ctx);
 
     this.game.writeTextToCanvas("To enter a door, move your character over it and press 'spacebar'", 30, this.game.canvas.width - 5, this.game.canvas.height - 10, 'right', 'white');
+
+    // Draw each part
+    this.snake.drawSnake(this.game.ctx);
+
+    this.food.drawFood(this.game.ctx);
   }
 }

@@ -7,7 +7,7 @@ export default class Player extends GameItem {
     constructor(maxX, maxY) {
         super('./assets/img/character_robot_walk0.png');
         this.xPos = 0;
-        this.yPos = 0;
+        this.yPos = 400;
         this.xVel = 10;
         this.yVel = 10;
         this.maxX = maxX;
