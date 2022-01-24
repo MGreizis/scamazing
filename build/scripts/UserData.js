@@ -22,11 +22,11 @@ export default class UserData {
     getScore() {
         return this.score;
     }
-    addScore() {
-        this.score += 50;
+    addScore(points) {
+        this.score += points;
     }
-    removeScore() {
-        this.score -= 30;
+    removeScore(points) {
+        this.score -= points;
     }
 }
 //# sourceMappingURL=UserData.js.map

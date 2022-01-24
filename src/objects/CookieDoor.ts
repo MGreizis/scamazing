@@ -9,7 +9,7 @@ export default class CookieDoor extends Doors {
   public constructor(maxX:number, maxY:number) {
     super(maxX, maxY, './assets/img/cookie-door.png');
 
-    this.xPos = Utils.randomNumber(0 + (this.img.width * 2), maxX - (this.img.width));
-    this.yPos = Utils.randomNumber(0 + (this.img.height * 2), maxY - (this.img.height));
+    this.xPos = Utils.randomNumber(0 + (this.img.width), maxX - (this.img.width));
+    this.yPos = Utils.randomNumber(0 + (this.img.height), maxY - (this.img.height));
   }
 }

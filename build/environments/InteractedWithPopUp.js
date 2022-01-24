@@ -23,9 +23,9 @@ export default class InteractedWithPopUp extends Scene {
     render() {
         this.game.ctx.clearRect(0, 0, this.game.canvas.width, this.game.canvas.height);
         const centerX = this.game.canvas.width / 2;
-        this.game.writeTextToCanvas("Don't interact with these kinds of pop-ups, as they most likely", 42, centerX, 50, 'center', 'white');
-        this.game.writeTextToCanvas('are scammers attempting to install malware on your computer!', 42, centerX, 100, 'center', 'white');
-        this.game.writeTextToCanvas("Press the 'spacebar' to go back to the hub", 50, centerX, this.game.canvas.height - 15, 'center', 'white');
+        this.game.writeTextToCanvas("Don't interact with these kinds of pop-ups, as they most likely", 42, centerX, 100, 'center', 'white');
+        this.game.writeTextToCanvas('are scammers attempting to install malware on your computer!', 42, centerX, 175, 'center', 'white');
+        this.game.writeTextToCanvas("Press the 'spacebar' to go back to the hub", 48, centerX, 625, 'center', 'white');
     }
 }
 //# sourceMappingURL=InteractedWithPopUp.js.map

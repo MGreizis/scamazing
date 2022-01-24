@@ -52,11 +52,11 @@ export default class ScenePopUp extends Scene {
    */
   public update(): Scene {
     if (this.shouldStartInteractedWithPop) {
-      this.game.getUser().removeScore();
+      this.game.getUser().removeScore(30);
       return new InteractedWithPopUp(this.game);
     }
     if (this.shouldStartHub) {
-      this.game.getUser().addScore();
+      this.game.getUser().addScore(40);
       return new Level(this.game);
     }
     return null;
@@ -71,7 +71,7 @@ export default class ScenePopUp extends Scene {
 
     this.popUp.draw(this.game.ctx);
     const centerX = this.game.canvas.width / 2;
-    this.game.writeTextToCanvas("Press the 'C' button to ignore the pop-up", 50, centerX, 50, 'center', 'white');
-    this.game.writeTextToCanvas("Press the 'N' button to download the app", 50, centerX, 150, 'center', 'white');
+    this.game.writeTextToCanvas("Press the 'C' button to ignore the pop-up", 40, centerX, 50, 'center', 'white');
+    this.game.writeTextToCanvas("Press the 'N' button to download the app", 40, centerX, 125, 'center', 'white');
   }
 }

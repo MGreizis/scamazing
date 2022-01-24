@@ -1,32 +1,45 @@
 import KeyListener from '../scripts/KeyListener.js';
 import Scene from './Scene.js';
-import Level from './Level.js';
+import PlayerGotScammed from './PlayerGotScammed.js';
+import FreeVBucks from '../objects/FreeVBucks.js';
+import PlayerIgnores from './PlayerIgnores.js';
 export default class TestEnvironment extends Scene {
     shouldStart;
     keyboard;
+    freevbucks;
+    isIgnored;
+    isGenerated;
     constructor(game) {
         super(game);
         this.keyboard = new KeyListener();
         this.shouldStart = false;
+        this.freevbucks = new FreeVBucks(this.game.canvas.width, this.game.canvas.height);
+        this.isIgnored = false;
+        this.isGenerated = false;
     }
     processInput() {
-        if (this.keyboard.isKeyDown(KeyListener.KEY_SPACE)) {
-            this.shouldStart = true;
+        if (this.keyboard.isKeyDown(KeyListener.KEY_I)) {
+            this.isIgnored = true;
+        }
+        else if (this.keyboard.isKeyDown(KeyListener.KEY_G)) {
+            this.isGenerated = true;
         }
     }
     update() {
-        if (this.shouldStart) {
-            return new Level(this.game);
+        if (this.isIgnored) {
+            this.game.getUser().addScore(20);
+            return new PlayerIgnores(this.game);
+        }
+        if (this.isGenerated) {
+            return new PlayerGotScammed(this.game);
         }
         return null;
     }
     render() {
         this.game.ctx.clearRect(0, 0, this.game.canvas.width, this.game.canvas.height);
+        this.freevbucks.draw(this.game.ctx);
         const centerX = this.game.canvas.width / 2;
-        const line1 = 'This area is still being worked on :)';
-        this.game.writeTextToCanvas(line1, 76, centerX, 250, 'center', 'red');
-        const msg = "Press 'spacebar' to go back";
-        this.game.writeTextToCanvas(msg, 48, centerX, 450, 'center', 'red');
+        this.game.writeTextToCanvas("Press the 'G' button to generate Vbucks, Press the 'I' button to ignore,", 24, centerX, 50, 'center', 'white');
     }
 }
 //# sourceMappingURL=TestEnvironment.js.map

@@ -4,8 +4,8 @@ export default class Cookie extends GameItem {
         super('./assets/img/cookie.png');
         this.maxX = maxX;
         this.maxY = maxY;
-        this.xPos = 512;
-        this.yPos = 200;
+        this.xPos = this.maxX / 3;
+        this.yPos = this.maxY / 6;
     }
 }
 //# sourceMappingURL=Cookie.js.map
